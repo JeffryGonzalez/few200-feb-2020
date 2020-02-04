@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 })
 export class AppComponent {
   title = 'Front End Web 200';
-  by = 'Jeff Gonzalez';
+  by = 'class FEW 200 ';
 
 
   constructor(store: Store<AppState>) {
