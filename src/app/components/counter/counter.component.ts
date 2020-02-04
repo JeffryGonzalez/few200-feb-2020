@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AppState } from 'src/app/reducers';
+import { AppState, selectCurrentCount, selectCountAtStart } from 'src/app/reducers';
 import { Store } from '@ngrx/store';
 import * as actions from '../../actions/counter.actions';
 
@@ -16,8 +16,11 @@ export class CounterComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.current$ = this.store.select(s => s.counter.current);
-    this.atStart$ = this.store.select(s => s.counter.current === 0);
+    // this.current$ = this.store.select(s => s.counter.current);
+    // this.atStart$ = this.store.select(s => s.counter.current === 0);
+    this.current$ = this.store.select(selectCurrentCount);
+    this.atStart$ = this.store.select(selectCountAtStart);
+
   }
   increment() {
     // this.store.dispatch({ type: 'increment' });
@@ -32,6 +35,10 @@ export class CounterComponent implements OnInit {
   reset() {
     // this.store.dispatch({ type: 'reset' }); used before the actions were setup
     this.store.dispatch(actions.countReset());
+  }
+
+  setCountBy(by: number) {
+    this.store.dispatch(actions.countBySet({ by }));
   }
 
 }
