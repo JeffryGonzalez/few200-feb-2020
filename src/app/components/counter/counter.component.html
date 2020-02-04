@@ -1,8 +1,12 @@
 <div>
-  <button class="btn btn-primary"
+  <button class="btn btn-primary mx-2"
+          [disabled]="atStart$ | async"
           (click)="decrement()">-</button>
-  <span>{{ current }}</span>
-  <button class="btn btn-primary"
+  <span>{{ current$ | async }}</span>
+  <button class="btn btn-primary mx-2"
           (click)="increment()">+</button>
+  <button class="btn btn-primary mx-2"
+          [disabled]="atStart$ | async"
+          (click)="reset()">reset</button>
 
 </div>
