@@ -5,7 +5,7 @@
   <span>{{ current$ | async }}</span>
   <button class="btn btn-primary ml-2 mt-2 mr-2 mx-2"
           (click)="increment()">+</button>
-  <button class="btn btn-primary mx-2"
+  <button class="btn btn-primary ml-2 mt-2 mr-2 mx-2"
           [disabled]="atStart$ | async"
           (click)="reset()">reset</button>
 
