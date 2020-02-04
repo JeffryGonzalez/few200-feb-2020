@@ -11,6 +11,8 @@ import { TodoEnryComponent } from './components/communications/todo-enry/todo-en
 import { TodoListComponent } from './components/communications/todo-list/todo-list.component';
 import { TodoService } from './components/communications/todo.service';
 import { CounterComponent } from './components/counter/counter.component';
+import { StoreModule } from '@ngrx/store';
+import { reducer, reducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { CounterComponent } from './components/counter/counter.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
