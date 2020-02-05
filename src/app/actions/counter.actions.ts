@@ -20,3 +20,8 @@ export const countBySet = createAction(
 export const disable = createAction(
   '[app counter] count by set ',
 );
+
+export const currentSet = createAction(
+  '[app counter] current set ',
+  props<{ by: number }>()
+);

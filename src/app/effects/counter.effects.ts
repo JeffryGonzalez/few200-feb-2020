@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { tap, map, filter } from 'rxjs/operators';
 import * as counterActions from '../actions/counter.actions';
 import { applicationStarted } from '../actions/app.actions';
+import { Store } from '@ngrx/store';
+import { selectCurrentCount, AppState } from '../reducers';
 
 @Injectable()
 export class CounterEffects {
@@ -30,12 +32,23 @@ export class CounterEffects {
     ), { dispatch: false }
   );
 
+  writeCurrentToLocalStorage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(counterActions.countDecremented, counterActions.countIncremented, counterActions.countReset),
+      tap(() => localStorage.setItem('current', this.current.toString()))
+    ), { dispatch: false }
+
+  );
+
 
   logActions$ = createEffect(() =>
     this.actions$.pipe(
       tap(a => console.log(`Got an action of type ${a.type}`))
     ), { dispatch: false }
   );
+  current: any;
 
-  constructor(private actions$: Actions) { }
+  constructor(private actions$: Actions, private store: Store<AppState>) {
+    store.select(selectCurrentCount).subscribe(c => this.current = c);
+  }
 }

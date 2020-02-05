@@ -14,7 +14,7 @@ export class CommunicationsComponent implements OnInit {
   //   { description: 'Mop floors', completed: true },
   //   { description: 'Take Out Trash', completed: false }
   // ];
-
+  listHeader = 'Your super Awesome Todo List';
   todoList$: Observable<TodoItem[]>;
   constructor(private service: TodoService) { }
 

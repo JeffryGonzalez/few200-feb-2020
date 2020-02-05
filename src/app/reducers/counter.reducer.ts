@@ -16,7 +16,8 @@ const myReducer = createReducer(
   on(actions.countReset, () => initialState),
   on(actions.countIncremented, (s) => ({ ...s, current: s.current + s.by })),
   on(actions.countDecremented, (s) => ({ ...s, current: s.current - s.by })),
-  on(actions.countBySet, (s, a) => ({ ...s, by: a.by }))
+  on(actions.countBySet, (s, a) => ({ ...s, by: a.by })),
+  on(actions.currentSet, (s, a) => ({ ...s, current: a.current }))
 );
 
 export function reducer(state: CounterState = initialState, action: Action): CounterState {
